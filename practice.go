@@ -4,7 +4,9 @@ package main
 
 import (
 	"fmt";
-	"math"
+	"math";
+	"strings";
+	"reflect"
 )
 
 func print_practice()  {
@@ -35,6 +37,29 @@ func get_square_root(x float64) float64 {
 	return right
 }
 
+
+// 获取单词个数 map
+func get_word_count_map(s string) map[string]int {
+	fmt.Println("进入获取单词个数 map")
+	s_list := strings.Fields(s)
+	fmt.Println("s_list", reflect.TypeOf(s_list))
+	fmt.Println(s_list)
+
+	word_count_map := make(map[string]int)
+	for _, word := range s_list{
+		fmt.Println(word)
+		count, ok := word_count_map[word]
+		if (ok) {
+			word_count_map[word] = count + 1
+		} else {
+			word_count_map[word] = 1
+		}
+	}
+
+	return word_count_map
+}
+
 func main() {
-	get_square_root(11024)
+	result := get_word_count_map("hello  world, me me")
+	fmt.Println(result)
 }
