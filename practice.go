@@ -59,7 +59,24 @@ func get_word_count_map(s string) map[string]int {
 	return word_count_map
 }
 
+
+// 斐波那契数
+func get_geibonaqi_number() func () int  {
+	a := 0
+	b := 1
+	closure := func () int {
+		a, b = b, a + b
+		return a
+	}
+
+	return closure
+}
+
+
 func main() {
-	result := get_word_count_map("hello  world, me me")
-	fmt.Println(result)
+	feibo_generate := get_geibonaqi_number()
+	for i:=0; i<13; i++ {
+		num := feibo_generate()
+		fmt.Println(num)
+	}
 }
