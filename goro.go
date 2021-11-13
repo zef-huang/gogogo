@@ -7,7 +7,7 @@ import (
 
 
 func goro_print(number string){
-	for i:=0; i<100; i++ {
+	for i:=0; i<1; i++ {
 		fmt.Printf("I am %s goro\n", number)
 		time.Sleep(time.Millisecond)
 	}
