@@ -5,6 +5,7 @@ package main
 import (
 	"fmt";
 	"strconv";
+	"math";
 	// "reflect"
 )
 
@@ -27,15 +28,48 @@ func (ip IPAddr) String() string {
 }
 
 
+// 报错方法练习
+// error 是内部接口需要对应的 Error() 方法
+type SqrtNegativeErr float64
+
+
+func (e SqrtNegativeErr) Error() (string){
+	return fmt.Sprint(float64(e), " cannot have sqrt root")
+}
+
+
+// 平方根函数
+func get_square_root(x float64) (float64, error){
+	left := 0.0
+	right := x
+
+	if (x < 0) {
+		return 0.0, SqrtNegativeErr(x)
+	}
+
+	for {
+		middle := (left + right) / 2
+		fmt.Println(middle)
+		if (math.Abs(math.Pow(middle, 2) - x) < 0.1) {
+			break
+		}
+
+		if (middle*middle > x) {
+			right = middle
+		} else {
+			left = middle
+		}
+
+	}
+
+	return right, nil
+}
+
 
 
 func main()  {
-	ips := map[string]IPAddr {
-		"test1": {1, 2, 3, 4},
-		"test2": {8, 8, 8, 8},
-	}
-
-	for k, v := range(ips){
-		fmt.Println(k, v)
-	}
+	_, value := get_square_root(-1)
+	// value := SqrtNegativeErr(-1.0)
+	fmt.Println(value)
+	// fmt.Println(ok)
 }
