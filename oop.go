@@ -15,12 +15,19 @@ func (a *Animal) DrinkWater() {
 }
 
 
+type Bird struct {
+    Animal
+}
+
+
 func main() {
     // 封装
     cat := Animal{"cat", 2}
     cat.DrinkWater()
 
-    // 继承
+    // 继承: 通过组合的方式实现
+    bird := Bird{Animal{"bird", 1}}
+    bird.DrinkWater()
 
     // 多态
 }
