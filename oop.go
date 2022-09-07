@@ -20,6 +20,16 @@ type Bird struct {
 }
 
 
+type Fish struct {
+    Animal
+}
+
+// 多态
+func (f Fish) DrinkWater () {
+    fmt.Println(f.name, "don't drink water")
+}
+
+
 func main() {
     // 封装
     cat := Animal{"cat", 2}
@@ -30,4 +40,6 @@ func main() {
     bird.DrinkWater()
 
     // 多态
+    fish := Fish{Animal{"fish", 1}}
+    fish.DrinkWater()
 }
